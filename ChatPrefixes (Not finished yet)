@@ -1,0 +1,36 @@
+package chat;
+
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class Main extends JavaPlugin{
+	
+	@EventHandler
+	public void chatFormat(AsyncPlayerChatEvent event){
+	  Player p = event.getPlayer();
+	  if(p.hasPermission("chat.format.member")){
+	    event.setFormat(ChatColor.DARK_GRAY + "[" + ChatColor.DARK_GREEN + "MEMBER" + ChatColor.DARK_GRAY + "] " + ChatColor.YELLOW + p.getDisplayName() + ChatColor.DARK_GRAY + ": " + ChatColor.WHITE + event.getMessage());
+	   
+	  }else if(p.hasPermission("chat.format.helper")){
+		    event.setFormat(ChatColor.DARK_GRAY + "[" + ChatColor.GREEN + "HELPER" + ChatColor.DARK_GRAY + "] " + ChatColor.YELLOW + p.getDisplayName() + ChatColor.DARK_GRAY + ": " + ChatColor.WHITE + event.getMessage());
+		    
+	  }else if(p.hasPermission("chat.format.moderator")){
+	    event.setFormat(ChatColor.DARK_GRAY + "[" + ChatColor.GOLD + "MODERATOR" + ChatColor.DARK_GRAY + "] " + ChatColor.YELLOW + p.getDisplayName() + ChatColor.DARK_GRAY + ": " + ChatColor.WHITE + event.getMessage());
+	    
+	  }else if(p.hasPermission("chat.format.admin")){
+	    event.setFormat(ChatColor.DARK_GRAY + "[" + ChatColor.RED + "ADMIN" + ChatColor.DARK_GRAY + "] " + ChatColor.YELLOW + p.getDisplayName() + ChatColor.DARK_GRAY + ": " + ChatColor.WHITE + event.getMessage());
+	    
+	  }else  if(p.hasPermission("chat.format.owner")){
+		    event.setFormat(ChatColor.DARK_GRAY + "[" + ChatColor.DARK_RED + "OWNER" + ChatColor.DARK_GRAY + "] " + ChatColor.YELLOW + p.getDisplayName() + ChatColor.DARK_GRAY + ": " + ChatColor.WHITE + event.getMessage());
+		    
+	  }else{
+	    event.setFormat(ChatColor.DARK_GRAY + "[" + ChatColor.GRAY + "UNKNOWN" + ChatColor.DARK_GRAY + "] " + ChatColor.YELLOW + p.getDisplayName() + ChatColor.DARK_GRAY + ": " + ChatColor.WHITE + event.getMessage());
+	    
+	
+	  }
+	  
+     }
+}
